@@ -263,25 +263,6 @@ Tab:AddButton({
   end
 })
 
-Tab:AddToggle({
-	Name = "夜视",
-	Default = false,
-	Callback = function(Value)
-		if Value then
-		    game.Lighting.Ambient = Color3.new(1, 1, 1)
-		else
-		    game.Lighting.Ambient = Color3.new(0, 0, 0)
-		end
-	end
-})
- 
-Tab:AddButton({
-	Name = "飞车",
-	Callback = function()
-loadstring(game:HttpGet("https://pastebin.com/raw/MHE1cbWF"))()
-	end
-})
-
 Tab:AddButton({
    Name = "工具挂",
    Callback = function()
@@ -308,13 +289,6 @@ Tab:AddButton({
 	Callback = function()
      loadstring(game:HttpGet("https://pastebin.com/raw/Zuw5T7DP",true))()
 	end    
-})
-
-Tab:AddButton({
-	Name = "甩飞别人",
-	Callback = function()
-     loadstring(game:HttpGet("https://pastebin.com/raw/GnvPVBEi"))()
-  	end    
 })
 
 Tab:AddButton({
@@ -378,13 +352,6 @@ Tab:AddButton({
 	Callback = function()
      loadstring(game:HttpGet('https://pastebin.com/raw/hQSBGsw2'))()
   	end    
-})
-
-Tab:AddButton({
-  Name = "死亡笔记",
-  Callback = function()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/tt/main/%E6%AD%BB%E4%BA%A1%E7%AC%94%E8%AE%B0%20(1).txt"))()
-  end
 })
 
 Tab:AddButton({
