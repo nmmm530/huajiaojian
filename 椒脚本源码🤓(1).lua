@@ -60,7 +60,6 @@ about:Label("你的用户ID:"..game.Players.LocalPlayer.UserId)
 about:Label("获取客户端ID:"..game:GetService("RbxAnalyticsService"):GetClientId())
 about:Label("你的注入器:"..identifyexecutor())
 about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
-about:Label("你现在的服务器名称:"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
 
 local UITab3 = win:Tab("『通用』",'7734068321')
 
@@ -190,14 +189,6 @@ about:Toggle("无限跳","Toggle",false,function(Value)
             end
         end)
     end)
-
-about:Slider("步行速度!", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
-  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
-end)
-
-about:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
-  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
-end)
 
 about:Button("甩人",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/zqyDSUWX"))()
