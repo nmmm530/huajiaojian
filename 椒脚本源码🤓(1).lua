@@ -38,8 +38,9 @@ local function HeartbeatUpdate()
 end
 Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="为您加载"; Duration = 4; })
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="成功"; Duration = 4; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🐣正在为您加载🐣"; Duration = 4; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🤓加载成功🤓"; Duration = 4; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="❤️祝您玩的开心❤️"; Duration = 4; })
 
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/lenglenguiui/refs/heads/main/lengui.lua"))()         
 local win = ui:new("椒脚本")
