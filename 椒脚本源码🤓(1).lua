@@ -1297,10 +1297,6 @@ about:Button("产卵塔",function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-280, 170, 341, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-about:Slider('跳跃能力', 'SliderInfo', 16, 16, 250,false, function(value)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
-end)
-
 about:Button("单击TP工具",function()
 mouse = game.Players.LocalPlayer:GetMouse()
                 tool = Instance.new("Tool")
