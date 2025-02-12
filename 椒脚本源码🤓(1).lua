@@ -193,9 +193,6 @@ about:Toggle("无限跳","Toggle",false,function(Value)
 about:Button("甩人",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/zqyDSUWX"))()
 end)
-about:Slider('设置重力', 'Sliderflag', 196.2, 196.2, 1000,false, function(Value)
-        game.Workspace.Gravity = Value
-    end)
     
 about:Button("替身",function()
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/SkrillexMe/SkrillexLoader/main/SkrillexLoadMain')))()
