@@ -1,3 +1,4 @@
+local OrionLib = loadstring(game:HttpGet('https://pastebin.com/raw/SePpsSPZ'))()
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
@@ -8,7 +9,7 @@ LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 LBLG.Enabled = true
 LBL.Name = "LBL"
 LBL.Parent = LBLG
-LBL.BackgroundColor3 = Color3.new(1, 1, 1)
+LBL.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 LBL.BackgroundTransparency = 1
 LBL.BorderColor3 = Color3.new(0, 0, 0)
 LBL.Position = UDim2.new(0.75,0,0.010,0)
