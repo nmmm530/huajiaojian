@@ -54,6 +54,7 @@ about:Label("椒脚本")
 about:Label("作者：花椒尖")
 about:Label("脚本持续更新中")
 about:Label("脚本懒得优化")
+about:Label("本脚本为完全免费脚本")
 about:Label("欢迎使用🤓")
 about:Label("你的账号年龄:"..player.AccountAge.."天")
 about:Label("你现在的服务器id:"..game.GameId)
@@ -629,9 +630,12 @@ about:Button("变身",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/Public-Scripts/main/Morphing/MorphScript.lua"))()
 end)
 
-local UITab11575 = win:Tab("『Door2』",'7734068321')
-
-local about = UITab11575:section("『Door2』",true)
+Tab:AddButton({
+  Name = "微山",
+  Callback = function()
+    loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
+  	end
+})
 
 about:Button("DX",function()
 loadstring(game:HttpGet("https://github.com/DocYogurt/Main/raw/main/Scripts/DF2RW.lua"))()
