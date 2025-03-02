@@ -647,7 +647,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/zuohongjian/bjb/main/
 end)
 
 about:Button("微山",function()
- loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
   end
 })
 
