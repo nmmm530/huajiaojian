@@ -586,6 +586,10 @@ about:Toggle("无 Screech", "NCH", false, function(NCH)
     _G.NS = (NCH and true or false) workspace.CurrentCamera.ChildAdded:Connect(function(child) if child.Name == "Screech" and _G.NS == true then child:Destroy() end end)
 end)
 
+about:Button("DOORS低回拉穿墙",function()
+loadstring(game:HttpGet("https://github.com/DXuwu/OK/raw/main/clip"))()
+end)
+
 about:Button("最强汉化",function()
 loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
 end)
@@ -649,6 +653,15 @@ end)
 about:Button("微山",function()
 loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\117\72\72\112\56\102\122\83"))()
 end)
+
+about:Button("极端模式",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/gNybFb2Z"))()
+end)
+
+about:Button("能量罐",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cbhlyy/lyycbh/main/nengliangtiao"))()
+end)   
+
 
 local UITab9 = win:Tab("『俄亥俄州』",'7734068321')
 
