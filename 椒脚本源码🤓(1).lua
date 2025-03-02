@@ -2591,9 +2591,3 @@ end)
 about:Button("格林维尔2",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8643/test/main/green"))()
 end)
-
-local UITab76 = win:Tab("『音乐』",'7734068321')
-
-local about = UITab76:section("『音乐』",true)
-about:Button("音乐",function()
-loadstring(game:HttpGet("https://create.roblox.com/marketplace/asset//Relaxed-Scene?keyword=&pageNumber=&pagePosition=8608569869"))()
