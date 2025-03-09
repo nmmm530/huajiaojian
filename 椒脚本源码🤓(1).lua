@@ -2620,3 +2620,13 @@ end)
 about:Button("格林维尔2",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8643/test/main/green"))()
 end)
+
+local UITab75 = win:Tab("索纳里亚",'7734068321')
+
+local about = UITab75:section("『索纳里亚』",true)
+about:Button("索纳里亚1",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Looser3itx/Hmmmmmmmmmmmmmmmmmmmmmmmmmmmm/main/loader.lua"))()
+end)
+about:Button("索纳里亚2",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Mangnex/Lycan-X-Hub/main/Creature%20of%20Sonaria"))()
+end)
