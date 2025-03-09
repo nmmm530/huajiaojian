@@ -560,6 +560,18 @@ about:Button("极速传奇（月星提供）",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/jisuchuanqi/refs/heads/main/%E6%9E%81%E9%80%9F%E4%BC%A0%E5%A5%87.lua"))()
 end)
 
+about:Button("1-会覆盖",function()
+loadstring(game:HttpGet('\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\98\111\121\115\99\112\47\98\101\116\97\47\109\97\105\110\47\37\69\57\37\56\48\37\57\70\37\69\53\37\66\65\37\65\54\37\69\55\37\56\50\37\66\56\37\69\56\37\66\53\37\66\55\46\108\117\97'))()
+end)
+
+about:Button("开启卡宠",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/uR6azdQQ"))()
+end)
+
+about:Button("自动",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/AyeCYbT6"))()
+end)
+
 local UITab7 = win:Tab("『死亡球』",'7734068321')
 
 local about = UITab7:section("『死亡球』",true)
