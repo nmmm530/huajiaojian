@@ -2630,3 +2630,8 @@ end)
 about:Button("索纳里亚2",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Mangnex/Lycan-X-Hub/main/Creature%20of%20Sonaria"))()
 end)
+
+local about = UITab75:section("『被遗弃』",true)
+about:Button("被遗弃",function()
+loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/SilkScripts/AppleStuff/refs/heads/main/AppleFSKV2")))()
+end)
