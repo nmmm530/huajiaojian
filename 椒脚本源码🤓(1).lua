@@ -2558,15 +2558,15 @@ about:Button("速度模拟器",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/DtfvE1B6"))()
 end)
 
-local UITab74 = win:Tab("武器库",'7734068321')
+local UITab74 = win:Tab("『武器库』",'7734068321')
 
 local about = UITab74:section("『武器库』",true)
 
-about:Button("武器库",function()
+about:Button("『武器库』",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/s-o-a-b/nexus/main/loadstring"))()
 end)
 
-local UITab75 = win:Tab("Papers Pls",'7734068321')
+local UITab75 = win:Tab("『Papers Pls』",'7734068321')
 
 local about = UITab75:section("『Papers Pls』",true)
 
@@ -2611,27 +2611,29 @@ end
 task.wait()
 end
 end)
-local UITab75 = win:Tab("格林维尔",'7734068321')
+local UITab75 = win:Tab("『格林维尔』",'7734068321')
 
 local about = UITab75:section("『格林维尔』",true)
-about:Button("格林维尔",function()
+about:Button("『格林维尔』",function()
 loadstring(game:HttpGet("https://github.com/root-jiege/new/raw/refs/heads/main/KO"))()
 end)
-about:Button("格林维尔2",function()
+about:Button("『格林维尔2』",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8643/test/main/green"))()
 end)
 
-local UITab75 = win:Tab("索纳里亚",'7734068321')
+local UITab75 = win:Tab("『索纳里亚』",'7734068321')
 
 local about = UITab75:section("『索纳里亚』",true)
-about:Button("索纳里亚1",function()
+about:Button("『索纳里亚1』",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Looser3itx/Hmmmmmmmmmmmmmmmmmmmmmmmmmmmm/main/loader.lua"))()
 end)
-about:Button("索纳里亚2",function()
+about:Button("『索纳里亚2』",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Mangnex/Lycan-X-Hub/main/Creature%20of%20Sonaria"))()
 end)
 
-local about = UITab76:section("『被遗弃』",true)
-about:Button("被遗弃",function()
+local UITab75 = win:Tab("『被遗弃』",'7734068321')
+
+local about = UITab75:section("『被遗弃』",true)
+about:Button("『被遗弃』",function()
 loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/SilkScripts/AppleStuff/refs/heads/main/AppleFSKV2")))()
 end)
