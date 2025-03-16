@@ -1,13 +1,3 @@
-local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
-    CurrentFPS = CurrentFPS - CurrentFPS % 1
-    FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
-end
-Start = tick()
-Heartbeat:Connect(HeartbeatUpdate)
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🐣正在为您加载🐣"; Duration = 4; })
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🤓加载成功🤓"; Duration = 4; })
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="❤️祝您玩的开心❤️"; Duration = 4; })
-
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Arceus-X-UI-Library/main/source.lua"))()
 lib:SetTitle("Arceus X | UI Library")
 lib:AddButton("Button", function()
@@ -36,6 +26,29 @@ lib:SetButtonsColor(55, 55, 55)
 lib:SetCloseBtnColor(255, 0, 0)
 lib:SetTitleColor(255, 255, 255)
 lib:SetBackgroundColor(40, 40, 40)
+
+local FpsLabel = LBL
+local Heartbeat = game:GetService("RunService").Heartbeat
+local LastIteration, Start
+local FrameUpdateTable = { }
+
+local function HeartbeatUpdate()
+    LastIteration = tick()
+    for Index = #FrameUpdateTable, 1, -1 do
+        FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+    end
+    
+    FrameUpdateTable[1] = LastIteration
+    local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+    CurrentFPS = CurrentFPS - CurrentFPS % 1
+    FpsLabel.Text = ("北京时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+end
+Start = tick()
+Heartbeat:Connect(HeartbeatUpdate)
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🐣正在为您加载🐣"; Duration = 4; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🤓加载成功🤓"; Duration = 4; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="❤️祝您玩的开心❤️"; Duration = 4; })
+
 local win = ui:new("椒脚本")
 --
 local UITab1 = win:Tab("『信息』")
