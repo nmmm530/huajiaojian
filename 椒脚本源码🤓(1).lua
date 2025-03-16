@@ -16,7 +16,6 @@ LBL.Size = UDim2.new(0, 133, 0, 30)
 LBL.Font = Enum.Font.GothamSemibold
 LBL.Text = "TextLabel"
 LBL.TextColor3 = Color3.new(1, 1, 1)
-Name_2.TextScaled = true
 LBL.TextScaled = true
 LBL.TextSize = 14
 LBL.TextWrapped = true
