@@ -1,21 +1,31 @@
-local LBLG = Instance.new("ScreenGui", getParent)
-local LBL = Instance.new("TextLabel", getParent)
-local player = game.Players.LocalPlayer
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Arceus-X-UI-Library/main/source.lua"))()
+lib:SetTitle("Arceus X | UI Library")
+lib:AddButton("Button", function()
+    print("Clicked!")
+end)
+lib:AddComboBox("ComboBox", {"1", "2", "3"}, function(selection)
+    if selection == "1" then
+        print("Selected 1")
+    elseif selection == "2" then
+        print("Selected 2")
+    elseif selection == "3" then
+        print("Selected 3")
+    end
+end)
+lib:AddToggle("Toggle", function(state)
+    if state then
+        print('On!')
+    else
+        print('Off!')
+    end
+end, false)
 
-LBLG.Name = "LBLG"
-LBLG.Parent = game.CoreGui
-LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-LBLG.Enabled = true
-LBL.Name = "LBL"
-LBL.Parent = LBLG
-LBL.BackgroundColor3 = Color3.new(10, 10, 10)
-LBL.BackgroundTransparency = 50
-LBL.BorderColor3 = Color3.new(10, 10, 10)
-LBL.Position = UDim2.new(0.75,0,0.010,0)
-LBL.Size = UDim2.new(0, 133, 0, 30)
-LBL.Font = Enum.Font.GothamSemibold
-LBL.Text = "TextLabel"
-LBL.TextColor3 = Color3.new(1, 1, 1)
+lib:SetIcon("http://www.roblox.com/asset/?id=9178187770")
+lib:SetTheme("Default")
+lib:SetButtonsColor(55, 55, 55)
+lib:SetCloseBtnColor(255, 0, 0)
+lib:SetTitleColor(255, 255, 255)
+lib:SetBackgroundColor(40, 40, 40)
 LBL.TextScaled = true
 LBL.TextSize = 14
 LBL.TextWrapped = true
