@@ -1,303 +1,333 @@
-local lib = {}
+repeat
+	task.wait()
+until game:IsLoaded()
+local library = {}
+local ToggleUI = false
+library.currentTab = nil
+library.flags = {}
+local services = setmetatable({}, {
+	__index = function(t, k)
+		return game.GetService(game, k)
+	end,
+})
+local mouse = services.Players.LocalPlayer:GetMouse()
+function Tween(obj, t, data)
+	services.TweenService
+		:Create(obj, TweenInfo.new(t[1], Enum.EasingStyle[t[2]], Enum.EasingDirection[t[3]]), data)
+		:Play()
+	return true
+end
+function Ripple(obj)
+	spawn(function()
+		if obj.ClipsDescendants ~= true then
+			obj.ClipsDescendants = true
+		end
+		local Ripple = Instance.new("ImageLabel")
+		Ripple.Name = "Ripple"
+		Ripple.Parent = obj
+		Ripple.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Ripple.BackgroundTransparency = 1.000
+		Ripple.ZIndex = 8
+		Ripple.Image = "rbxassetid://2708891598"
+		Ripple.ImageTransparency = 0.800
+		Ripple.ScaleType = Enum.ScaleType.Fit
+		Ripple.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		Ripple.Position = UDim2.new(
+			(mouse.X - Ripple.AbsolutePosition.X) / obj.AbsoluteSize.X,
+			0,
+			(mouse.Y - Ripple.AbsolutePosition.Y) / obj.AbsoluteSize.Y,
+			0
+		)
+		Tween(
+			Ripple,
+			{ 0.3, "Linear", "InOut" },
+			{ Position = UDim2.new(-5.5, 0, -5.5, 0), Size = UDim2.new(12, 0, 12, 0) }
+		)
+		wait(0.15)
+		Tween(Ripple, { 0.3, "Linear", "InOut" }, { ImageTransparency = 1 })
+		wait(0.3)
+		Ripple:Destroy()
+	end)
+end
+local toggled = false
+local switchingTabs = false
+function switchTab(new)
+	if switchingTabs then
+		return
+	end
+	local old = library.currentTab
+	if old == nil then
+		new[2].Visible = true
+		library.currentTab = new
+		services.TweenService:Create(new[1], TweenInfo.new(0.1), { ImageTransparency = 0 }):Play()
+		services.TweenService:Create(new[1].TabText, TweenInfo.new(0.1), { TextTransparency = 0 }):Play()
+		return
+	end
+	if old[1] == new[1] then
+		return
+	end
+	switchingTabs = true
+	library.currentTab = new
+	services.TweenService:Create(old[1], TweenInfo.new(0.1), { ImageTransparency = 0.2 }):Play()
+	services.TweenService:Create(new[1], TweenInfo.new(0.1), { ImageTransparency = 0 }):Play()
+	services.TweenService:Create(old[1].TabText, TweenInfo.new(0.1), { TextTransparency = 0.2 }):Play()
+	services.TweenService:Create(new[1].TabText, TweenInfo.new(0.1), { TextTransparency = 0 }):Play()
+	old[2].Visible = false
+	new[2].Visible = true
+	task.wait(0.1)
+	switchingTabs = false
+end
+function drag(frame, hold)
+	if not hold then
+		hold = frame
+	end
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	local function update(input)
+		local delta = input.Position - dragStart
+		frame.Position =
+			UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	hold.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			dragStart = input.Position
+			startPos = frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement then
+			dragInput = input
+		end
+	end)
+	services.UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+function library.new(library, name, theme)
+	for _, v in next, services.CoreGui:GetChildren() do
+		if v.Name == "REN" then
+			v:Destroy()
+		end
+	end
 
-local Script_Title = "Arceus X <font color=\"rgb(255, 0, 0)\">|</font> Ui Lib"
+	local config = {
+		MainColor = Color3.fromRGB(16, 16, 16),
+		TabColor = Color3.fromRGB(22, 22, 22),
+		Bg_Color = Color3.fromRGB(17, 17, 17),
+		Zy_Color = Color3.fromRGB(17, 17, 17), -- 主要颜色
+
+		Button_Color = Color3.fromRGB(22, 22, 22),
+		Textbox_Color = Color3.fromRGB(22, 22, 22),
+		Dropdown_Color = Color3.fromRGB(22, 22, 22),
+		Keybind_Color = Color3.fromRGB(22, 22, 22),
+		Label_Color = Color3.fromRGB(22, 22, 22),
+
+		Slider_Color = Color3.fromRGB(22, 22, 22),
+		SliderBar_Color = Color3.fromRGB(37, 254, 152),
+
+		Toggle_Color = Color3.fromRGB(22, 22, 22),
+		Toggle_Off = Color3.fromRGB(34, 34, 34),
+		Toggle_On = Color3.fromRGB(37, 254, 152),
+	}
 
 
--- Instances:
-local Arceus = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local Intro = Instance.new("Frame")
-local UICorner_2 = Instance.new("UICorner")
-local Logo = Instance.new("ImageButton")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-local Title = Instance.new("TextLabel")
-local Menu = Instance.new("ScrollingFrame")
-local UIListLayout = Instance.new("UIListLayout")
-local Toggle = Instance.new("ImageButton")
-local UICorner_3 = Instance.new("UICorner")
-local Enabled = Instance.new("Frame")
-local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
-local UICorner_4 = Instance.new("UICorner")
-local Check = Instance.new("Frame")
-local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
-local UICorner_5 = Instance.new("UICorner")
-local Name = Instance.new("TextLabel")
-local UIGradient = Instance.new("UIGradient")
-local Button = Instance.new("ImageButton")
-local UICorner_6 = Instance.new("UICorner")
-local Name_2 = Instance.new("TextLabel")
-local UIGradient_2 = Instance.new("UIGradient")
-local tab = Instance.new("Frame")
-local Close = Instance.new("TextButton")
-local ComboElem = Instance.new("ImageButton")
-local UICorner_7 = Instance.new("UICorner")
-local Name_3 = Instance.new("TextLabel")
-local UIGradient_3 = Instance.new("UIGradient")
-local Img = Instance.new("TextLabel")
-local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
-local ComboBox = Instance.new("ImageButton")
-local UICorner_8 = Instance.new("UICorner")
-local Name_4 = Instance.new("TextLabel")
-local UIGradient_4 = Instance.new("UIGradient")
-local Img_2 = Instance.new("TextLabel")
-local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
 
---Properties:
+	local dogent = Instance.new("ScreenGui")
+	local Main = Instance.new("Frame")
+	local TabMain = Instance.new("Frame")
+	local MainC = Instance.new("UICorner")
+	local SB = Instance.new("Frame")
+	local SBC = Instance.new("UICorner")
+	local Side = Instance.new("Frame")
+	local SideG = Instance.new("UIGradient")
+	local TabBtns = Instance.new("ScrollingFrame")
+	local TabBtnsL = Instance.new("UIListLayout")
+	local ScriptTitle = Instance.new("TextLabel")
+	local SBG = Instance.new("UIGradient")
+	local DropShadowHolder = Instance.new("Frame")
+	local DropShadow = Instance.new("ImageLabel")
+	local UICornerMain = Instance.new("UICorner")
+	local UIGradient = Instance.new("UIGradient")
+	local UIGradientTitle = Instance.new("UIGradient")
 
-Arceus.Name = "Arceus"
-Arceus.Enabled = true
-Arceus.ResetOnSpawn = true
-Arceus.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Arceus.DisplayOrder = 999999999
 
-Main.Name = "Main"
-Main.Parent = Arceus
-Main.Active = true
-Main.Draggable = true
-Main.AnchorPoint = Vector2.new(0.5, 0.5)
-Main.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Main.BorderSizePixel = 0
-Main.Position = UDim2.new(0.5, 0, -0.2, 0) --UDim2.new(0.5, 0, 0.5, 0)
-Main.Size = UDim2.new(0.3, 0, 0.3, 0)
+	if syn and syn.protect_gui then
+		syn.protect_gui(dogent)
+	end
+	dogent.Name = "REN"
+	dogent.Parent = services.CoreGui
+	function UiDestroy()
+		dogent:Destroy()
+	end
+	function ToggleUILib()
+		if not ToggleUI then
+			dogent.Enabled = false
+			ToggleUI = true
+		else
+			ToggleUI = false
+			dogent.Enabled = true
+		end
+	end
+	Main.Name = "Main"
+	Main.Parent = dogent
+	Main.AnchorPoint = Vector2.new(0.5, 0.5)
+	Main.BackgroundColor3 = config.Bg_Color
+	Main.BorderColor3 = config.MainColor
+	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Main.Size = UDim2.new(0, 572, 0, 353)
+	Main.ZIndex = 1
+	Main.Active = true
+	Main.Draggable = true
+	services.UserInputService.InputEnded:Connect(function(input)
+		if input.KeyCode == Enum.KeyCode.LeftControl then
+			Main.Visible = not Main.Visible
+		end
+	end)
 
-UICorner.CornerRadius = UDim.new(0.1, 0)
-UICorner.Parent = Main
 
-Intro.Name = "Intro"
-Intro.Parent = Main
-Intro.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Intro.ClipsDescendants = true
-Intro.Size = UDim2.new(1, 0, 1, 0)
-Intro.ZIndex = 2
+	local Open = Instance.new("ImageButton")
+	local UICorner = Instance.new("UICorner")
 
-UICorner_2.CornerRadius = UDim.new(0.1, 0)
-UICorner_2.Parent = Intro
+	Open.Name = "Open"
+	Open.Parent = dogent
+	Open.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Open.BackgroundTransparency = 1
+	Open.Position = UDim2.new(0.00829315186, 0, 0.13107837, 0)
+	Open.Size = UDim2.new(0, 66, 0, 66)
+	Open.Active = true
+	Open.Draggable = true
+	Open.Image = "rbxassetid://75265518749811"
+	
+	Open.MouseButton1Click:Connect(function()
+		Main.Visible = not Main.Visible
+	end)
 
-Logo.Parent = Intro
-Logo.AnchorPoint = Vector2.new(0.5, 0.5)
-Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Logo.BackgroundTransparency = 1
-Logo.BorderSizePixel = 0
-Logo.Position = UDim2.new(0.5, 0, 0.5, 0)
-Logo.Size = UDim2.new(0.75, 0, 0.75, 0)
-Logo.ZIndex = 2
-Logo.Image = "http://www.roblox.com/asset/?id=9178187770"
-Logo.ScaleType = Enum.ScaleType.Fit
-Logo.Active = false
+	UICorner.Parent = Open
+	
 
-UIAspectRatioConstraint.Parent = Logo
 
-Title.Name = "Title"
-Title.Parent = Main
-Title.AnchorPoint = Vector2.new(1, 0)
-Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1
-Title.BorderSizePixel = 0
-Title.Position = UDim2.new(0.975, 0, 0.075, 0)
-Title.Size = UDim2.new(0.85, 0, 0.155, 0)
-Title.Font = Enum.Font.TitilliumWeb
-Title.FontFace = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Bold)
-Title.RichText = true
-Title.Text = Script_Title
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextScaled = true
-Title.TextSize = 14
-Title.TextWrapped = true
-Title.TextXAlignment = Enum.TextXAlignment.Left
-Title.TextYAlignment = Enum.TextYAlignment.Center
 
-Menu.Name = "Menu"
-Menu.Parent = Main
-Menu.Active = true
-Menu.AnchorPoint = Vector2.new(0.5, 1)
-Menu.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Menu.BackgroundTransparency = 1
-Menu.AutomaticCanvasSize = Enum.AutomaticSize.Y
-Menu.BorderSizePixel = 0
-Menu.Position = UDim2.new(0.5, 0, 0.95, 0)
-Menu.Size = UDim2.new(0.95, 0, 0.65, 0)
-Menu.CanvasSize = UDim2.new(0, 0, 0, 0)
-Menu.ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255)
-Menu.ScrollBarThickness = Menu.AbsoluteSize.X/25
+	drag(Main)
+	UICornerMain.Parent = Main
+	UICornerMain.CornerRadius = UDim.new(0, 3)
+	DropShadowHolder.Name = "DropShadowHolder"
+	DropShadowHolder.Parent = Main
+	DropShadowHolder.BackgroundTransparency = 1.000
+	DropShadowHolder.BorderSizePixel = 0
+	DropShadowHolder.Size = UDim2.new(1, 0, 1, 0)
+	DropShadowHolder.BorderColor3 = Color3.fromRGB(255, 255, 255)
+	DropShadowHolder.ZIndex = 0
 
-UIListLayout.Parent = Menu
---UIListLayout.Padding = UDim.new(0.025, 0)
-UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	function toggleui()
+		toggled = not toggled
+		spawn(function()
+			if toggled then
+				wait(0.3)
+			end
+		end)
+		Tween(Main, { 0.3, "Sine", "InOut" }, { Size = UDim2.new(0, 609, 0, (toggled and 505 or 0)) })
+	end
+	TabMain.Name = "TabMain"
+	TabMain.Parent = Main
+	TabMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TabMain.BackgroundTransparency = 1.000
+	TabMain.Position = UDim2.new(0.217000037, 0, 0, 3)
+	TabMain.Size = UDim2.new(0, 448, 0, 350)
+	MainC.CornerRadius = UDim.new(0, 5.5)
+	MainC.Name = "MainC"
+	MainC.Parent = Frame
+	SB.Name = "SB"
+	SB.Parent = Main
+	SB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SB.BorderColor3 = config.MainColor
+	SB.Size = UDim2.new(0, 8, 0, 353)
+	SBC.CornerRadius = UDim.new(0, 6)
+	SBC.Name = "SBC"
+	SBC.Parent = SB
+	Side.Name = "Side"
+	Side.Parent = SB
+	Side.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Side.BorderColor3 = Color3.fromRGB(255, 255, 255)
+	Side.BorderSizePixel = 0
+	Side.ClipsDescendants = true
+	Side.Position = UDim2.new(1, 0, 0, 0)
+	Side.Size = UDim2.new(0, 110, 0, 353)
+	SideG.Color =
+		ColorSequence.new({ ColorSequenceKeypoint.new(0.00, config.Zy_Color), ColorSequenceKeypoint.new(1.00, config.Zy_Color) })
+	SideG.Rotation = 90
+	SideG.Name = "SideG"
+	SideG.Parent = Side
+	TabBtns.Name = "TabBtns"
+	TabBtns.Parent = Side
+	TabBtns.Active = true
+	TabBtns.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TabBtns.BackgroundTransparency = 1.000
+	TabBtns.BorderSizePixel = 0
+	TabBtns.Position = UDim2.new(0, 0, 0.0973535776, 0)
+	TabBtns.Size = UDim2.new(0, 110, 0, 318)
+	TabBtns.CanvasSize = UDim2.new(0, 0, 1, 0)
+	TabBtns.ScrollBarThickness = 0
+	TabBtnsL.Name = "TabBtnsL"
+	TabBtnsL.Parent = TabBtns
+	TabBtnsL.SortOrder = Enum.SortOrder.LayoutOrder
+	TabBtnsL.Padding = UDim.new(0, 12)
+	ScriptTitle.Name = "ScriptTitle"
+	ScriptTitle.Parent = Side
+	ScriptTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ScriptTitle.BackgroundTransparency = 1.000
+	ScriptTitle.Position = UDim2.new(0, 0, 0.00953488424, 0)
+	ScriptTitle.Size = UDim2.new(0, 102, 0, 20)
+	ScriptTitle.Font = Enum.Font.GothamSemibold
+	ScriptTitle.Text = name
+	ScriptTitle.TextColor3 = Color3.fromRGB(37, 254, 152)
+	ScriptTitle.TextSize = 14.000
+	ScriptTitle.TextScaled = true
+	ScriptTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-Toggle.Name = "Toggle"
-Toggle.Visible = false
---Toggle.Parent = Arceus
-Toggle.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-Toggle.Size = UDim2.new(0.95, 0, 0, 50)
+	SBG.Color =
+		ColorSequence.new({ ColorSequenceKeypoint.new(0.00, config.Zy_Color), ColorSequenceKeypoint.new(1.00, config.Zy_Color) })
+	SBG.Rotation = 90
+	SBG.Name = "SBG"
+	SBG.Parent = SB
+	TabBtnsL:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+		TabBtns.CanvasSize = UDim2.new(0, 0, 0, TabBtnsL.AbsoluteContentSize.Y + 18)
+	end)
 
-UICorner_3.CornerRadius = UDim.new(0.25, 0)
-UICorner_3.Parent = Toggle
-
-Enabled.Name = "Enabled"
-Enabled.Parent = Toggle
-Enabled.AnchorPoint = Vector2.new(1, 0.5)
-Enabled.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Enabled.Position = UDim2.new(0.975, 0, 0.5, 0)
-Enabled.Size = UDim2.new(0.75, 0, 0.75, 0)
-
-UIAspectRatioConstraint_2.Parent = Enabled
-
-UICorner_4.CornerRadius = UDim.new(0.3, 0)
-UICorner_4.Parent = Enabled
-
-Check.Name = "Check"
-Check.Parent = Enabled
-Check.AnchorPoint = Vector2.new(0.5, 0.5)
-Check.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-Check.Position = UDim2.new(0.5, 0, 0.5, 0)
-Check.Size = UDim2.new(0.65, 0, 0.65, 0)
-
-UIAspectRatioConstraint_3.Parent = Check
-
-UICorner_5.CornerRadius = UDim.new(0.3, 0)
-UICorner_5.Parent = Check
-
-Name.Name = "Name"
-Name.Parent = Toggle
-Name.AnchorPoint = Vector2.new(0, 0.5)
-Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name.BackgroundTransparency = 1
-Name.BorderSizePixel = 0
-Name.Position = UDim2.new(0.05, 0, 0.5, 0)
-Name.Size = UDim2.new(0.75, 0, 0.8, 0)
-Name.Font = Enum.Font.TitilliumWeb
-Name.Text = "Script"
-Name.TextColor3 = Color3.fromRGB(255, 255, 255)
-Name.TextScaled = true
-Name.TextSize = 14
-Name.TextWrapped = true
-Name.TextXAlignment = Enum.TextXAlignment.Left
-Name.TextYAlignment = Enum.TextYAlignment.Bottom
-
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(180, 180, 180))}
-UIGradient.Parent = Toggle
-
-Button.Name = "Button"
---Button.Parent = Arceus
-Button.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-Button.Size = UDim2.new(0.95, 0, 0, 50)
-
-UICorner_6.CornerRadius = UDim.new(0.25, 0)
-UICorner_6.Parent = Button
-
-Name_2.Name = "Name"
-Name_2.Parent = Button
-Name_2.AnchorPoint = Vector2.new(0, 0.5)
-Name_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name_2.BackgroundTransparency = 1
-Name_2.BorderSizePixel = 0
-Name_2.Position = UDim2.new(0.05, 0, 0.5, 0)
-Name_2.Size = UDim2.new(0.95, 0, 0.82, 0)
-Name_2.Font = Enum.Font.TitilliumWeb
-Name_2.Text = "Enabled"
-Name_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Name_2.TextScaled = true
-Name_2.TextSize = 14
-Name_2.TextWrapped = true
-Name_2.TextXAlignment = Enum.TextXAlignment.Left
-Name_2.TextYAlignment = Enum.TextYAlignment.Bottom
-
-UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(180, 180, 180))}
-UIGradient_2.Parent = Button
-
-tab.Name = "Tab"
-tab.Visible = false
---tab.Parent = Arceus
-tab.BackgroundTransparency = 1
-tab.Size = UDim2.new(0.95, 0, 0.025, 0)
-
-Close.Name = "Close"
-Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Close.BackgroundTransparency = 1
-Close.BorderSizePixel = 0
-Close.Position = UDim2.new(0.8, 0, 0.1, 0)
-Close.Size = UDim2.new(0.15, 0, 0.125, 0)
-Close.Font = Enum.Font.FredokaOne
-Close.Text = "X"
-Close.TextColor3 = Color3.fromRGB(255, 0, 0)
-Close.TextScaled = true
-Close.TextSize = 14
-Close.TextWrapped = true
-Close.TextXAlignment = Enum.TextXAlignment.Right
-Close.Parent = Main
-
-ComboElem.Name = "ComboElem"
-ComboElem.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-ComboElem.Size = UDim2.new(0.95, 0, 0, 50)
-
-UICorner_7.CornerRadius = UDim.new(0.25, 0)
-UICorner_7.Parent = ComboElem
-
-Name_3.Name = "Name"
-Name_3.Parent = ComboElem
-Name_3.AnchorPoint = Vector2.new(0, 0.5)
-Name_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name_3.BackgroundTransparency = 1
-Name_3.BorderSizePixel = 0
-Name_3.Position = UDim2.new(0.05, 0, 0.5, 0)
-Name_3.Size = UDim2.new(0.75, 0, 0.8, 0)
-Name_3.Font = Enum.Font.TitilliumWeb
-Name_3.Text = "Enabled"
-Name_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-Name_3.TextScaled = true
-Name_3.TextSize = 14
-Name_3.TextWrapped = true
-Name_3.TextXAlignment = Enum.TextXAlignment.Left
-Name_3.TextYAlignment = Enum.TextYAlignment.Bottom
-
-UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(180, 180, 180))}
-UIGradient_3.Rotation = 180
-UIGradient_3.Parent = ComboElem
-
-Img.Name = "Img"
-Img.Parent = ComboElem
-Img.AnchorPoint = Vector2.new(1, 0.5)
-Img.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Img.BackgroundTransparency = 1
-Img.BorderSizePixel = 0
-Img.Position = UDim2.new(0.975, 0, 0.5, 0)
-Img.Rotation = 90
-Img.Size = UDim2.new(0.75, 0, 0.75, 0)
-Img.Font = Enum.Font.FredokaOne
-Img.Text = "^"
-Img.TextColor3 = Color3.fromRGB(255, 255, 255)
-Img.TextScaled = true
-Img.TextSize = 14
-Img.TextWrapped = true
-
-UIAspectRatioConstraint_4.Parent = Img
-
-ComboBox.Name = "ComboBox"
-ComboBox.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-ComboBox.Size = UDim2.new(0.95, 0, 0, 50)
-
-UICorner_8.CornerRadius = UDim.new(0.25, 0)
-UICorner_8.Parent = ComboBox
-
-Name_4.Name = "Name"
-Name_4.Parent = ComboBox
-Name_4.AnchorPoint = Vector2.new(0, 0.5)
-Name_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name_4.BackgroundTransparency = 1.000
-Name_4.BorderSizePixel = 0
-Name_4.Position = UDim2.new(0.05, 0, 0.5, 0)
-Name_4.Size = UDim2.new(0.75, 0, 0.8, 0)
-Name_4.Font = Enum.Font.TitilliumWeb
-Name_4.Text = "Enabled"
-Name_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-Name_4.TextScaled = true
-Name_4.TextSize = 14
-Name_4.TextWrapped = true
-Name_4.TextXAlignment = Enum.TextXAlignment.Left
-Name_4.TextYAlignment = Enum.TextYAlignment.Bottom
-
-UIGradient_4.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.
+	local window = {}
+	function window.Tab(window, name, icon)
+		local Tab = Instance.new("ScrollingFrame")
+		local TabIco = Instance.new("ImageLabel")
+		local TabText = Instance.new("TextLabel")
+		local TabBtn = Instance.new("TextButton")
+		local TabL = Instance.new("UIListLayout")
+		Tab.Name = "Tab"
+		Tab.Parent = TabMain
+		Tab.Active = true
+		Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Tab.BackgroundTransparency = 1.000
+		Tab.Size = UDim2.new(1, 0, 1, 0)
+		Tab.ScrollBarThickness = 2
+		Tab.Visible = false
+		TabIco.Name = "TabIco"
+		TabIco.Parent = TabBtns
+		TabIco.BackgroundTransparency = 1.000
+		TabIco.BorderSizePixel = 0
+		TabIco.Size = UDim2.new(0, 24, 0, 24)
+		TabIco.Image = ("rbxassetid://%s"):format((icon or 4370341699))
+		TabIco.ImageTransparency = 0.2
+		TabText.Name = "TabText"
+		TabText.Parent = TabIco
+	
 LBL.TextScaled = true
 LBL.TextSize = 14
 LBL.TextWrapped = true
