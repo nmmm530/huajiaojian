@@ -45,7 +45,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/lenglenguiui/refs/heads/main/lengui.lua"))()         
 local win = ui:new("椒脚本")
 --
-local UITab1 = win:Tab("『信息』",'7734068321')
+local UITab1 = win:Tab("『信息』")
 
 local about = UITab1:section("『作者信息』",false)
 
@@ -56,12 +56,12 @@ about:Label("脚本持续更新中")
 about:Label("脚本懒得优化")
 about:Label("本脚本为完全免费脚本")
 about:Label("欢迎使用🤓")
+about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
+about:Label("你的注入器:"..identifyexecutor())
 about:Label("你的账号年龄:"..player.AccountAge.."天")
 about:Label("你现在的服务器id:"..game.GameId)
 about:Label("你的用户ID:"..game.Players.LocalPlayer.UserId)
 about:Label("获取客户端ID:"..game:GetService("RbxAnalyticsService"):GetClientId())
-about:Label("你的注入器:"..identifyexecutor())
-about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 
 local UITab3 = win:Tab("『通用』",'7734068321')
 
