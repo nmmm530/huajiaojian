@@ -26,10 +26,10 @@ lib:SetButtonsColor(55, 55, 55)
 lib:SetCloseBtnColor(255, 0, 0)
 lib:SetTitleColor(255, 255, 255)
 lib:SetBackgroundColor(40, 40, 40)
-LBL.TextScaled = true
-LBL.TextSize = 14
-LBL.TextWrapped = true
-LBL.Visible = true
+lib:TextScaled = true
+lib:TextSize = 14
+lib:TextWrapped = true
+lib:Visible = true
 
 local FpsLabel = LBL
 local Heartbeat = game:GetService("RunService").Heartbeat
