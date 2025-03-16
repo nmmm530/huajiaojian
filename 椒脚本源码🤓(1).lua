@@ -43,11 +43,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="🤓加载成功🤓"; Duration = 4; })
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『椒脚本』"; Text ="❤️祝您玩的开心❤️"; Duration = 4; })
 
-local = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Arceus-X-UI-Library/main/source.lua"))()
-lib:SetTitle("Arceus X | UI Library")
-lib:AddButton("Button", function()
-    print("Clicked!")
-end)
+local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/lenglenguiui/refs/heads/main/lengui.lua"))()         
 local win = ui:new("椒脚本")
 --
 local UITab1 = win:Tab("『信息』")
