@@ -1,6 +1,21 @@
-local LBLG = Instance.new("ScreenGui", getParent)
-local LBL = Instance.new("TextLabel", getParent)
+repeat task.wait() until game:IsLoaded()
+local TweenService = game:GetService("TweenService")
+local LocalizationService = game:GetService("LocalizationService")
+local LocalizationService = game:GetService("LocalizationService")
 local player = game.Players.LocalPlayer
+
+local result, code = pcall(function()
+	return LocalizationService:GetCountryRegionForPlayerAsync(player)
+end)   
+local ScreenGui = Instance.new("ScreenGui")
+local MAIN = Instance.new("Frame")
+local LOGO = Instance.new("ImageLabel")
+local UICorner = Instance.new("UICorner")
+local BAR = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local TITLE = Instance.new("TextLabel")
+local LOADING = Instance.new("TextLabel")
+local WindowStroke = Instance.new("UIStroke")
 
 LBLG.Name = "LBLG"
 LBLG.Parent = game.CoreGui
