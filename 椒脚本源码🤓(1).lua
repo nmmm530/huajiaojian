@@ -1,21 +1,24 @@
-repeat task.wait() until game:IsLoaded()
-local TweenService = game:GetService("TweenService")
-local LocalizationService = game:GetService("LocalizationService")
-local LocalizationService = game:GetService("LocalizationService")
-local player = game.Players.LocalPlayer
-
-local result, code = pcall(function()
-	return LocalizationService:GetCountryRegionForPlayerAsync(player)
-end)   
-local ScreenGui = Instance.new("ScreenGui")
-local MAIN = Instance.new("Frame")
-local LOGO = Instance.new("ImageLabel")
-local UICorner = Instance.new("UICorner")
-local BAR = Instance.new("Frame")
-local UICorner_2 = Instance.new("UICorner")
-local TITLE = Instance.new("TextLabel")
-local LOADING = Instance.new("TextLabel")
-local WindowStroke = Instance.new("UIStroke")
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Arceus-X-UI-Library/main/source.lua"))()
+lib:SetTitle("Arceus X | UI Library")
+lib:AddButton("Button", function()
+    print("Clicked!")
+end)
+lib:AddComboBox("ComboBox", {"1", "2", "3"}, function(selection)
+    if selection == "1" then
+        print("Selected 1")
+    elseif selection == "2" then
+        print("Selected 2")
+    elseif selection == "3" then
+        print("Selected 3")
+    end
+end)
+lib:AddToggle("Toggle", function(state)
+    if state then
+        print('On!')
+    else
+        print('Off!')
+    end
+end, false)
 
 LBLG.Name = "LBLG"
 LBLG.Parent = game.CoreGui
