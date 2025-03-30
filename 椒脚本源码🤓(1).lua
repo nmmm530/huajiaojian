@@ -2732,39 +2732,3 @@ local about = UITab75:section("『被遗弃』",true)
 about:Button("『被遗弃』",function()
 loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/SilkScripts/AppleStuff/refs/heads/main/AppleFSKV2")))()
 end)
-
-else
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "验证失败"; Text ="正在复制脚本官方群聊"; Duration = 1; })
-game.Players.LocalPlayer:Kick(NoKey)
-end
-end)
-
-TextButton_2.Parent = ScreenGui
-TextButton_2.Active = true
-TextButton_2.BackgroundColor3 = Color3.fromRGB(151,151,255)
-TextButton_2.BorderColor3 = Color3.fromRGB(0,0,0)
-TextButton_2.BorderSizePixel = 0
-TextButton_2.Position = UDim2.new(0.631474078, 0,0.539840639, 0)
-TextButton_2.Size = UDim2.new(0, 99,0, 37)
-TextButton_2.Font = Enum.Font.SourceSans
-TextButton_2.Text = "退出UI"
-TextButton_2.TextSize = 20
-TextButton_2.MouseButton1Click:Connect(function()
-ScreenGui:Destroy()
-end)
-
-TextButton_3.Parent = ScreenGui
-TextButton_3.Active = true
-TextButton_3.BackgroundColor3 = Color3.fromRGB(151,151,255)
-TextButton_3.BorderColor3 = Color3.fromRGB(0,0,0)
-TextButton_3.BorderSizePixel = 0
-TextButton_3.Position = UDim2.new(0.75, 0,0.159362555, 0)
-TextButton_3.Size = UDim2.new(0, 79,0, 33)
-TextButton_3.Font = Enum.Font.SourceSans
-TextButton_3.Text = "复制脚本官群"
-TextButton_3.TextScaled = true
-TextButton_3.TextSize = 11
-TextButton_3.TextWrapped = true
-TextButton_3.MouseButton1Click:Connect(function()
-setclipboard(QQ)
-end)
