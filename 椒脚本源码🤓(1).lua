@@ -6,12 +6,7 @@ local Key = "1"
 end
 local QQ = "928768040" 
 local NoKey = "卡密错误 请加入官群 获取卡密" 
-local V = "卡密系统版本2.0 团队不招人"
-
-
-
-local Info = "看在开源的面子上 给个分享不过分吧"
-
+local V = "卡密系统版本2.0
 local ScreenGui = Instance.new("ScreenGui")
 local Frame_1 = Instance.new("Frame")
 local TextLabel_1 = Instance.new("TextLabel")
@@ -132,7 +127,6 @@ TextButton_3.TextWrapped = true
 TextButton_3.MouseButton1Click:Connect(function()
 setclipboard(QQ)
 end)
-
 local LBLG = Instance.new("ScreenGui", getParent)
 local LBL = Instance.new("TextLabel", getParent)
 local player = game.Players.LocalPlayer
