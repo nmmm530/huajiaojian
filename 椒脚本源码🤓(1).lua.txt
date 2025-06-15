@@ -155,7 +155,7 @@ about:Button("透视",function()
     end)
     end)
 
-Tab:AddTextbox({
+about:Toggle({
 	Name = "移动速度",
 	Default = "",
 	TextDisappear = true,
@@ -164,7 +164,7 @@ Tab:AddTextbox({
 	end	 
 })
 
-Tab:AddTextbox({
+about:Toggle({
 	Name = "跳跃高度",
 	Default = "",
 	TextDisappear = true,
@@ -173,7 +173,7 @@ Tab:AddTextbox({
 	end	 
 })
 
-Tab:AddTextbox({
+about:Toggle({
 	Name = "最大血量",
 	Default = "",
 	TextDisappear = true,
@@ -182,7 +182,7 @@ Tab:AddTextbox({
 	end	 
 })
 
-Tab:AddTextbox({
+about:Toggle({
 	Name = "当前血量",
 	Default = "",
 	TextDisappear = true,
@@ -191,7 +191,7 @@ Tab:AddTextbox({
 	end	 
 })
 
-Tab:AddTextbox({
+about:Toggle({
 	Name = "回满血",
 	Callback = function()
 game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.MaxHealth 
