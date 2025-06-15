@@ -155,6 +155,49 @@ about:Button("透视",function()
     end)
     end)
 
+Tab:AddTextbox({
+	Name = "移动速度",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end	 
+})
+
+Tab:AddTextbox({
+	Name = "跳跃高度",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end	 
+})
+
+Tab:AddTextbox({
+	Name = "最大血量",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.MaxHealth = Value
+	end	 
+})
+
+Tab:AddTextbox({
+	Name = "当前血量",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.Health = Value
+	end	 
+})
+
+Tab:AddTextbox({
+	Name = "回满血",
+	Callback = function()
+game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.MaxHealth 
+end
+})
+
 about:Toggle("夜视","Toggle",false,function(Value)
 if Value then
 
