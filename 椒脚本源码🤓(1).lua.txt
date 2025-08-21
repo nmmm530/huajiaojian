@@ -532,6 +532,10 @@ about:Button("力量传奇(月星提供)",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/liliangchuanqi/refs/heads/main/%E5%8A%9B%E9%87%8F%E4%BC%A0%E5%A5%87.lua"))()
 end)
 
+about:Button("吸人",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nmmm530/huajiaojian/refs/heads/main/%E5%90%B8%E4%BA%BA.txt"))()
+end)
+
 local UITab5 = win:Tab("『忍者传奇』",'7734068321')
 
 local about = UITab5:section("『忍者传奇』",true)
