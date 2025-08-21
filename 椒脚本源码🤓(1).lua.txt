@@ -2651,6 +2651,20 @@ end)
 local UITab75 = win:Tab("『被遗弃』",'7734068321')
 
 local about = UITab75:section("『被遗弃』",true)
-about:Button("『被遗弃』",function()
+about:Button("被遗弃",function()
 loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/SilkScripts/AppleStuff/refs/heads/main/AppleFSKV2")))()
+end)
+
+local UITab75 = win:Tab("『墨水游戏』",'7734068321')
+
+local about = UITab75:section("『墨水游戏』",true)
+about:Button("墨水游戏汉化1",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/XOTRXONY/INKGAME/main/INKGAMEE.lua", true))()
+end)
+
+local UITab75 = win:Tab("『死铁轨』",'7734068321')
+
+local about = UITab75:section("『死铁轨』",true)
+about:Button("死铁轨自动刷债券没有卡密V2",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))()
 end)
