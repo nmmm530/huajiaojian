@@ -67,7 +67,7 @@ local UITab3 = win:Tab("『通用』",'7734068321')
 
 local about = UITab3:section("『通用』",true)
 
-about:Slider('设置重力', 'Sliderflag', 196.2, 196.2, 1000,false, function(Value)
+about:Slider('设置重力', 'Sliderflag', 196.2, 196.2, 10000,false, function(Value)
         game.Workspace.Gravity = Value
     end)
     
