@@ -55,7 +55,7 @@ about:Label("作者：🇨🇳花椒尖🇨🇳")
 about:Label("脚本持续更新中")
 about:Label("脚本懒得优化")
 about:Label("本脚本为完全免费脚本")
-about:Label("欢迎使用🤓")
+about:Label("😻欢迎使用😻")
 about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 about:Label("你的注入器:"..identifyexecutor())
 about:Label("你的账号年龄:"..player.AccountAge.."天")
@@ -66,6 +66,18 @@ about:Label("获取客户端ID:"..game:GetService("RbxAnalyticsService"):GetClie
 local UITab3 = win:Tab("『通用』",'7734068321')
 
 local about = UITab3:section("『通用』",true)
+
+about:Slider('设置重力', 'Sliderflag', 196.2, 196.2, 1000,false, function(Value)
+        game.Workspace.Gravity = Value
+    end)
+    
+ about:Slider("步行速度!", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
+  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
+end)
+
+about:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
+  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
+end)
 
 about:Button("玩家加入游戏提示",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
