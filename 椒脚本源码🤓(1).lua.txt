@@ -67,15 +67,15 @@ local UITab3 = win:Tab("『通用』",'7734068321')
 
 local about = UITab3:section("『通用』",true)
 
-about:Slider('设置重力', 'Sliderflag', 196.2, 196.2, 10000,false, function(Value)
+about:Slider('设置重力', 'Sliderflag', 196.2, 196.2, 1000,false, function(Value)
         game.Workspace.Gravity = Value
     end)
     
- about:Slider("步行速度!", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
+ about:Slider("步行速度!", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 40000, false, function(Speed)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
 end)
 
-about:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
+about:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 40000, false, function(Jump)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
 end)
 
@@ -373,14 +373,6 @@ end)
 
 about:Button("转圈",function()
 loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
-end)
-
-about:Button("操人脚本",function()
-loadstring(game:HttpGet("https://pastebin.com/raw/bzmhRgKL"))();
-end)
-
-about:Button("不知名",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/odhdshhe/haoyongde/refs/heads/main/%E4%B8%8D%E7%9F%A5%E5%90%8D.txt"))()
 end)
 
 local UITab99 = win:Tab("『FE』",'7734068321')
