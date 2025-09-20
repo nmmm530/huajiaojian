@@ -8,14 +8,14 @@ LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 LBLG.Enabled = true
 LBL.Name = "LBL"
 LBL.Parent = LBLG
-LBL.BackgroundColor4 = Color4.new(10, 10, 10)
+LBL.BackgroundColor3 = Color3.new(10, 10, 10)
 LBL.BackgroundTransparency = 50
-LBL.BorderColor4 = Color4.new(10, 10, 10)
+LBL.BorderColor3 = Color3.new(10, 10, 10)
 LBL.Position = UDim2.new(0.75,0,0.010,0)
 LBL.Size = UDim2.new(0, 133, 0, 30)
 LBL.Font = Enum.Font.GothamSemibold
 LBL.Text = "TextLabel"
-LBL.TextColor4 = Color4.new(1, 1, 1)
+LBL.TextColor3 = Color3.new(1, 1, 1)
 LBL.TextScaled = true
 LBL.TextSize = 14
 LBL.TextWrapped = true
@@ -77,6 +77,17 @@ end)
 
 about:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 40000, false, function(Jump)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
+end)
+
+about:Toggle("彩虹UI", "RBUI", false, function(RBUI)
+    if RBUI then
+        game:GetService("CoreGui")["frosty is cute"].Main.Style = "DropShadow"
+    else
+        game:GetService("CoreGui")["frosty is cute"].Main.Style = "Custom"
+    end
+end)
+about:Button("摧毁界面", function()
+    game:GetService("CoreGui")["frosty is cute"]:Destroy()
 end)
 
 about:Button("玩家加入游戏提示",function()
