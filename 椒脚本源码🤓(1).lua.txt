@@ -79,17 +79,6 @@ about:Slider("跳跃高度!", "JumpPower", game.Players.LocalPlayer.Character.Hu
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
 end)
 
-about:Toggle("彩虹UI", "RBUI", false, function(RBUI)
-    if RBUI then
-        game:GetService("CoreGui")["frosty is cute"].Main.Style = "DropShadow"
-    else
-        game:GetService("CoreGui")["frosty is cute"].Main.Style = "Custom"
-    end
-end)
-about:Button("摧毁界面", function()
-    game:GetService("CoreGui")["frosty is cute"]:Destroy()
-end)
-
 about:Button("玩家加入游戏提示",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
 end)
