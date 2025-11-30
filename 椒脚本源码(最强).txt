@@ -1,20 +1,15 @@
---XI团队开源 狗屎皮脚本加入联邦 得罪XI
---Rb脚本中心修复源码↓
-
-
 game:GetService("StarterGui"):SetCore("SendNotification", {
   Title = "椒脚本",
   Text = "欢迎使用皮脚本",
   Icon = "rbxassetid://18941716391",
   Duration = 1,
   Callback = bindable,
-  Button1 = "脚本功能多多",
-  Button2 = "感谢您的使用",
+  Button1 = "感谢您的使用",
 })
 wait(1.5)
 game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "皮脚本",
-  Text = "皮脚本已重做 本来想搞成检测服务器ID的 后面还是因为麻烦 就不搞了",
+  Title = "椒脚本",
+  Text = "椒脚本已重做 本来想搞成检测服务器ID的 后面还是因为麻烦 就不搞了",
   Icon = "rbxassetid://18941716391",
   Duration = 1,
   Callback = bindable,
