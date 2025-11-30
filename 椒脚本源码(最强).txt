@@ -1,6 +1,6 @@
 game:GetService("StarterGui"):SetCore("SendNotification", {
   Title = "椒脚本",
-  Text = "欢迎使用皮脚本",
+  Text = "欢迎使用椒脚本",
   Icon = "rbxassetid://18941716391",
   Duration = 1,
   Callback = bindable,
@@ -9,7 +9,6 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
 wait(1.5)
 game:GetService("StarterGui"):SetCore("SendNotification", {
   Title = "椒脚本",
-  Text = "椒脚本已重做 本来想搞成检测服务器ID的 后面还是因为麻烦 就不搞了",
   Icon = "rbxassetid://18941716391",
   Duration = 1,
   Callback = bindable,
@@ -18,8 +17,7 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
 })
 wait(1.5)
 game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "皮脚本",
-  Text = "每周都会更新几个服务器 更新有点慢 请见谅",
+  Title = "椒脚本",
   Icon = "rbxassetid://18941716391",
   Duration = 2,
   Callback = bindable,
@@ -35,7 +33,7 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
   VirtualUserService:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
 end)
 game:GetService("StarterGui"):SetCore("SendNotification", {
-  Title = "皮脚本",
+  Title = "椒脚本",
   Text = "已自动开启反挂机",
   Icon = "rbxassetid://18941716391",
   Duration = 2,
@@ -46,12 +44,7 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
 local RevenantLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
 RevenantLib.DefaultColor = Color3.fromRGB(255, 0, 0)
 RevenantLib:Notification({
-  Text = "皮脚本作者: 小皮\u{e000}",
-  Duration = 6,
-})
-wait(1)
-RevenantLib:Notification({
-  Text = "皮脚本帮助者: 紅鲨\u{e000}",
+  Text = "椒脚本作者: 花椒尖\u{e000}",
   Duration = 6,
 })
 wait(1)
@@ -588,7 +581,7 @@ LocalPlayer.CharacterAdded:Connect(function(character)
     characterInstance.Animate.Disabled = false
   end
 end)
-local UILibrary = loadstring(game:HttpGet([[https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/%E7%9A%AE%E8%84%9A%E6%9C%ACUI%E6%BA%90%E7%A0%81.lua]]))():new("皮脚本-破解版")
+local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/nmmm530/huajiaojian/refs/heads/main/%E7%BE%8A.lua"))()
 local InfoTab = UILibrary:Tab("『信息』", "18930406865")
 local PlayerInfoSection = InfoTab:section("玩家信息", true)
 PlayerInfoSection:Label("您的注入器:" .. identifyexecutor())
@@ -597,7 +590,7 @@ PlayerInfoSection:Label("您的名称:" .. game.Players.LocalPlayer.DisplayName)
 PlayerInfoSection:Label("您当前服务器的ID:" .. game.GameId)
 PlayerInfoSection:Label("您的用户ID:" .. game.Players.LocalPlayer.UserId)
 PlayerInfoSection:Label("您的客户端ID:" .. game:GetService("RbxAnalyticsService"):GetClientId())
-PlayerInfoSection:Toggle("开/关皮脚本用户名称显示", "Toggle", false, function(enabled)
+PlayerInfoSection:Toggle("开/关椒脚本用户名称显示", "Toggle", false, function(enabled)
   
   if enabled then
     XM = true
@@ -615,7 +608,7 @@ PlayerInfoSection:Toggle("开/关皮脚本用户名称显示", "Toggle", false, 
       textLabel.Position = UDim2.new(0.8, 0.8, 0.0009, 0)
       textLabel.Size = UDim2.new(0, 135, 0, 50)
       textLabel.Font = Enum.Font.GothamSemibold
-      textLabel.Text = "尊贵的皮脚本用户: " .. game.Players.LocalPlayer.DisplayName
+      textLabel.Text = "您好: " .. game.Players.LocalPlayer.DisplayName
       textLabel.TextColor3 = Color3.new(1, 1, 1)
       textLabel.TextScaled = true
       textLabel.TextSize = 14
@@ -646,7 +639,7 @@ PlayerInfoSection:Toggle("开/关皮脚本用户名称显示", "Toggle", false, 
   end
 end)
 local AuthorInfoSection = InfoTab:section("作者信息", true)
-AuthorInfoSection:Label("皮脚本")
+AuthorInfoSection:Label("椒脚本")
 AuthorInfoSection:Label("永不跑路的脚本")
 AuthorInfoSection:Label("作者: 小皮")
 AuthorInfoSection:Label("作者QQ: 2131869117")
