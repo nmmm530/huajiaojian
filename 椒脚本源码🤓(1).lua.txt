@@ -375,7 +375,7 @@ about:Button("转圈",function()
 loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
 end)
 
-local r125_0 = r50_0:Tab("『音乐』", "18930406865"):section("音乐", true)
+local r125_0 = r50_0:Tab("『音乐』", "7734068321"):section("音乐", true)
 r125_0:Label("输入音乐ID即可 播放音乐仅自己可听见")
 local r128_0 = "Textbox"
 r128_0 = "音乐播放器"
